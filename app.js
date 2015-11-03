@@ -4,11 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var MongoClient = require('mongodb').MongoClient;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+var mongo_URI = 'mongodb://<dbuser>:<dbpassword>@ds049084.mongolab.com:49084/heroku_1mhfcj30';
+var db = MongoClient.connect(mongo_URI, function(error, db_connect) {
+        db = db_connect;
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,5 +62,28 @@ app.use(function(err, req, res, next) {
   });
 });
 
+app.get('/allgroups.json', function(req, res) {
+  db.collection('Groups', function(error, collection) {
+    collection.find().toArray(function(err, docs) {
+      res.json(docs);
+    });
+  });
+});
+
+app.get('/groups.json', function(req, res) {
+  var query = {
+    "location": req.query.location,
+    "time_commitment": req.query.time_commitment,
+    "semester": req.query.semester,
+    "client": req.query.client,
+    "area": req.query.area
+  };
+
+  db.collection('Groups', function(error, collection) {
+    collection.find(query).toArray(function(err, docs) {
+      res.json(docs);
+    });
+  });
+});
 
 module.exports = app;
