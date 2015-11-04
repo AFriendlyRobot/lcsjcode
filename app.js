@@ -4,17 +4,24 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var MongoClient = require('mongodb').MongoClient;
+
+// var MongoClient = require('mongodb').MongoClient;
+
+var mongo = require('mongodb');
+var monk = require('monk');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
 
-var mongo_URI = 'mongodb://<dbuser>:<dbpassword>@ds049084.mongolab.com:49084/heroku_1mhfcj30';
-var db = MongoClient.connect(mongo_URI, function(error, db_connect) {
-        db = db_connect;
-});
+// var mongo_URI = 'mongodb://<dbuser>:<dbpassword>@ds049084.mongolab.com:49084/heroku_1mhfcj30';
+// var db = MongoClient.connect(mongo_URI, function(error, db_connect) {
+//         db = db_connect;
+// });
+
+var dbURI = process.env.MONGOLAB_URI || process.env.MONGOLAB_URL || process.env.MONGOHQ_URL || 'localhost:27017/lcsjcode'
+var db = monk(dbURI);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,6 +34,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function(req,res,next) {
+    req.db = db;
+    next();
+});
 
 app.use('/', routes);
 app.use('/users', users);
