@@ -39,3 +39,6 @@ exports.stringOverlap = function (left, right) {
 
 // All caps, all singular, all one word, all nouns
 exports.questionList = ['COMMITMENT', 'LOCATION', 'SEMESTER', 'AUDIENCE', 'INTEREST'];
+
+//number of results minimum for group query
+exports.min_results = 5;
