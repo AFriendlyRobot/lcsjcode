@@ -27,14 +27,20 @@ exports.checkKeys = function (body, fields) {
 }
 
 exports.stringOverlap = function (left, right) {
-	for (var i = 0; i < left.length; i++) {
-		if (right.indexOf(left[i]) != -1) {
-			return true;
+	if (!((left) && (right))) { return ''; }
+	var retString = '';
+
+	var l = left.toUpperCase();
+	var r = right.toUpperCase();
+
+	for (var i = 0; i < l.length; i++) {
+		if (r.indexOf(l[i]) != -1) {
+			retString += l[i];
 		}
 	}
 
 	// Fall through
-	return false;
+	return retString;
 }
 
 // All caps, all singular, all one word, all nouns

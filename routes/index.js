@@ -29,7 +29,12 @@ router.get('/groupquery', function(req, res, next) {
 
 	var maxMatch = 0;
 	var matchScores = [];
+	var matches = [];
 	var localScore = 0;
+	var localMatches = [];
+	var retDocs = [];
+
+	for (var i = 0; i < qList.length; i++) { localMatches.push(false); }
 
 	// Look at all data. Only viable because we're dealing with a small dataset
 	// Should eventually add weighting in params of certain questions
@@ -40,18 +45,42 @@ router.get('/groupquery', function(req, res, next) {
 		for (var i = 0; i < allDocs.length; i++) {
 			localScore = 0;
 			doc = allDocs[i];
+
+			for (var x = 0; x < qList.length; x++) { localMatches[x] = false; }
+
 			for (var j = 0; j < qList.length; j++) {
-				if (util.stringOverlap(doc[qList[j]], cleanAnswers[j])) {
+				if (util.stringOverlap(doc[qList[j].toLowerCase()].toUpperCase(), cleanAnswers[j].toUpperCase())) {
 					localScore++;
+					localMatches[j] = true;
 				}
 			}
-			doc.score = localScore;
+
+			matchScores.push(localScore);
+			matches.push(localMatches);
+			if (localScore > maxMatch) { maxMatch = localScore; }
 		}
-		topDocs = allDocs.sort(function(a, b) {
-			return b.score - a.score;
-		}).slice(0, util.min_results);
-		res.json(topDocs);
-		// Return best match scores (maybe specifying minimum number)
+
+		for (var i = 0; i < allDocs.length; i++) {
+			if (matchScores[i] == maxMatch) {
+				var newDoc = {};
+				var oldDoc = allDocs[i];
+				newDoc.name = oldDoc.name;
+				var mismatches = [];
+				for (var j=0; j < qList.length; j++) {
+					newDoc[qList[j].toLowerCase()] = oldDoc[qList[j].toLowerCase()];
+					if (matches[i][j] == false) {
+						mismatches.push(qList[j].toLowerCase());
+					}
+				}
+				newDoc.mismatches = mismatches;
+				console.log(newDoc.mismatches);
+
+				retDocs.push(newDoc);
+			}
+		}
+
+		// Return best matches, specifying what is mismatched
+		return res.status(200).json(retDocs);
 	});
 });
 
