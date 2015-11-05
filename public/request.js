@@ -20,6 +20,7 @@ $(document).ready(function () {
 		$.ajax({
 			type:"GET",
 			url:"https://shielded-atoll-8269.herokuapp.com/groupquery?"+paramString,
+			// url: "http://localhost:3000/groupquery?"+paramString,
 			success:successCallback,
 			failure:failureCallback
 		});

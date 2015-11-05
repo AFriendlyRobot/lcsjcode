@@ -56,7 +56,7 @@ router.get('/groupquery', function(req, res, next) {
 			}
 
 			matchScores.push(localScore);
-			matches.push(localMatches);
+			matches.push(localMatches.slice(0));
 			if (localScore > maxMatch) { maxMatch = localScore; }
 		}
 
@@ -72,8 +72,7 @@ router.get('/groupquery', function(req, res, next) {
 						mismatches.push(qList[j].toLowerCase());
 					}
 				}
-				newDoc.mismatches = mismatches;
-				console.log(newDoc.mismatches);
+				newDoc.mismatches = mismatches.slice(0);
 
 				retDocs.push(newDoc);
 			}
