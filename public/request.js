@@ -45,7 +45,8 @@ function failureCallback(response) {
 
 function formatOrganization(orgDoc) {
 	var html = '';
-	html += '<div id="' + orgDoc.name + '">';
+	html += '<div id="' + orgDoc.name + ', class="text-center">';
+	html += '<p class="text-center">'
 	html += "<b>" + orgDoc.name + "</b>";
 	html += "<br />";
 
@@ -55,7 +56,7 @@ function formatOrganization(orgDoc) {
 		html += orgDoc.mismatches.join(', ');
 	}
 
-	html += "</div>";
+	html += "</p></div>";
 
 	return html;
 }

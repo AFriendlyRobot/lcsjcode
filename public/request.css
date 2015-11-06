@@ -1,0 +1,27 @@
+html {
+	background-color: #e2e2e2;
+}
+
+body {
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top: 5%;
+	padding-left: 3%;
+	padding-right: 3%;
+	padding-top: 3%;
+	padding-bottom: 3%;
+}
+
+select {
+	margin: auto;
+}
+
+#logo {
+	display: inline-block;
+	width: 10em;
+	margin-right: 5em;
+}
+
+#header {
+	display: inline-block;
+}
