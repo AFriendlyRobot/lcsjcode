@@ -9,7 +9,7 @@ $(document).ready(function () {
 		var params = [];
 		var localParam = "";
 
-		var selected = [];
+		var selected = "";
 		$('#checkboxes input:checked').each(function() {
     	selected.push($(this).attr('name'));
 		});
@@ -17,7 +17,7 @@ $(document).ready(function () {
 		for (var i = 0; i < qNames.length; i++) {
 			localParam = "";
 			localParam += qNames[i].toUpperCase() + "=";
-			localParam += $(questions[i]).val();
+			$(questions[i] + ' input:checked').each(function(){localParam += $(this).val();});
 			params.push(localParam);
 		}
 
