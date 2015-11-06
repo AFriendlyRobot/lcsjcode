@@ -5,6 +5,7 @@ $(document).ready(function () {
 	$('#request-button').click(function(elem) {
 		elem.preventDefault();
 
+		// Parse parameters into query
 		var params = [];
 		var localParam = "";
 
@@ -15,8 +16,9 @@ $(document).ready(function () {
 			params.push(localParam);
 		}
 
-	var paramString = params.join("&");
+		var paramString = params.join("&");
 
+		// Send query to our API
 		$.ajax({
 			type:"GET",
 			url:"https://shielded-atoll-8269.herokuapp.com/groupquery?"+paramString,
