@@ -9,6 +9,11 @@ $(document).ready(function () {
 		var params = [];
 		var localParam = "";
 
+		var selected = [];
+		$('#checkboxes input:checked').each(function() {
+    	selected.push($(this).attr('name'));
+		});
+
 		for (var i = 0; i < qNames.length; i++) {
 			localParam = "";
 			localParam += qNames[i].toUpperCase() + "=";
@@ -17,6 +22,8 @@ $(document).ready(function () {
 		}
 
 		var paramString = params.join("&");
+
+		console.log (paramString);
 
 		// Send query to our API
 		$.ajax({
