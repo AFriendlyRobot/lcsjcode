@@ -11,7 +11,7 @@ $(document).ready(function () {
 
 		var selected = "";
 		$('#checkboxes input:checked').each(function() {
-    	selected.push($(this).attr('name'));
+    	selected.push($(this).val());
 		});
 
 		for (var i = 0; i < qNames.length; i++) {
