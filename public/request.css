@@ -3,6 +3,8 @@ html {
 }
 
 body {
+	color: white;
+	background-color: rgb(123,175,212);
 	margin-left: 5%;
 	margin-right: 5%;
 	margin-top: 5%;
@@ -17,7 +19,8 @@ select {
 	margin: auto;
 }
 
-.form-question {
+.form-question { 
+	color: white;
 	display: inline-block;
 	width: auto;
 	text-align: left;
@@ -25,6 +28,7 @@ select {
 }
 
 #logo {
+	-webkit-filter: invert(100%);
 	display: inline-block;
 	width: 10em;
 	margin-right: 2em;
