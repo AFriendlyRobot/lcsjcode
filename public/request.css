@@ -43,13 +43,17 @@ select {
 	display: block;
 }
 
-@media screen and (min-width: 950px) {
+/*.row-block-thing {
+	display: block;
+}
+*/
+@media screen and (min-width: 900px) {
 	.small-break {
 		display: none;
 	}
 }
 
-@media screen and (min-width: 1300px) {
+@media screen and (min-width: 1350px) {
 	.small-break {
 		display: none;
 	}
