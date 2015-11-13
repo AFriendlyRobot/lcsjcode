@@ -21,6 +21,8 @@ function findQuestions() {
 	$('.form-question').each(function (i, elem) {
 		qDivs.push(elem);
 	});
+
+	smallToggled = true;
 }
 
 function sizeHandler() {
@@ -31,7 +33,9 @@ function sizeHandler() {
 
 		$(qDivs[questionIndex]).removeClass("inactive-question").addClass('active-question');
 
-		$(".question-nav-btn").css("display: inline-block;");
+		$(".question-nav-btn").each(function (i, elem) {
+			$(elem).show();
+		});
 
 		smallToggled = true;
 	} else if ((smallToggled) && ($(window).width() >= smallCutoff)) {
@@ -39,7 +43,9 @@ function sizeHandler() {
 			$(elem).removeClass("inactive-question").removeClass("active-question");
 		});
 
-		$(".question-nav-btn").css("display: none;");
+		$(".question-nav-btn").each(function (i, elem) {
+			$(elem).hide();
+		});
 
 		smallToggled = false;
 	}
