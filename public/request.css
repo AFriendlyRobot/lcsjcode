@@ -43,10 +43,39 @@ select {
 	display: block;
 }
 
-/*.row-block-thing {
-	display: block;
+.inactive-question {
+	display: none;
+	margin: none;
+	padding: none;
 }
-*/
+
+.active-question {
+	display: inline-block;
+}
+
+/*#nextBtn {
+	display: none;
+}
+
+#backBtn {
+	display: none;
+}*/
+
+@media screen and (max-width: 899px) {
+	#small-wrapper {
+		text-align: left;
+		display: inline-block;
+	}
+
+	/*#question-form {
+		text-align: left;
+	}*/
+
+	.question-br {
+		display: none;
+	}
+}
+
 @media screen and (min-width: 900px) {
 	.small-break {
 		display: none;
