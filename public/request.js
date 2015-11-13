@@ -10,7 +10,7 @@ var questionIndex = 0;
 
 $(document).ready(function () {
 	findQuestions();
-	sizeHandler();
+	sizeInit();
 	$(window).resize(sizeHandler);
 	$('#request-button').click(sendRequest);
 	$('#nextBtn').click(clickNext);
@@ -23,6 +23,32 @@ function findQuestions() {
 	});
 
 	smallToggled = true;
+}
+
+function sizeInit() {
+	if ($(window).width() < smallCutoff) {
+		$(qDivs).each(function (i, elem) {
+			$(elem).addClass("inactive-question");
+		});
+
+		$(qDivs[questionIndex]).removeClass("inactive-question").addClass('active-question');
+
+		$(".question-nav-btn").each(function (i, elem) {
+			$(elem).show();
+		});
+
+		smallToggled = true;
+	} else if ($(window).width() >= smallCutoff) {
+		$(qDivs).each(function (i, elem) {
+			$(elem).removeClass("inactive-question").removeClass("active-question");
+		});
+
+		$(".question-nav-btn").each(function (i, elem) {
+			$(elem).hide();
+		});
+
+		smallToggled = false;
+	}
 }
 
 function sizeHandler() {
