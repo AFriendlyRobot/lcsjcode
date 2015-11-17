@@ -13,11 +13,17 @@ router.post('/add/', util.authenticateBody, function(req, res, next) {
     return res.status(400).send('Cannot add, missing name argument');
   } else {
     var organizations = req.db.get("organizations");
-    req.db.insert({name: util.sanitize(req.body.name)}, function(err, docs) {
+    organizations.insert({
+    name :      util.sanitize(req.body.name), 
+    commitment: util.sanitize(req.body.commitment), 
+    location :  util.sanitize(req.body.location), 
+    semester :  util.sanitize(req.body.semester),
+    audience :  util.sanitize(req.body.audience), 
+    interest :  util.sanitize(req.body.interest)
+    }, function(err, docs) {
       if (err) {return res.status(500).send("Internal server error");}
       return res.status(200).send('Added organization named "' + req.body.name + '"');
     });
-    //res.send('Added organization named "' + req.body.name + '"');
   }
 });
 
