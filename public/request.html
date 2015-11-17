@@ -1,121 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>LCS request page</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="request.css">
-	<script src="request.js"></script>
-</head>
-<body class="img-rounded">
+	<head>
+		<title>LCS request page</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="request.css">
+		<script src="request.js"></script>
+	</head>
 
-<div class="text-center">
-	<img id="logo" src="logoA.png" />
-	<h1 id="header">Leonard Carmichael Society Survey</h1>
-	<p>Answer the questions below to see which club best suits you!</p> 
-</div>
+	<body class="img-rounded">
 
-<div id="main-content">
-<form class="text-center">
-<p>
-	<div class="form-group" id="commitment">
-	 <label for="sel1">1. Time Commitment:</label><br>
-			<input type="checkbox" value="a">1-3 hours a week<br>
-			<input type="checkbox" value="b">3-7 hours a week<br>
-			<input type="checkbox" value="c">7-10 hours a week<br>
-			<input type="checkbox" value="d">10+ hours a week<br>
-	</div>
-</p>
-
-<p>
-	<div class="form-group" id="location">
-	 <label for="sel1">2. Location:</label><br>
-			<input type="checkbox" value="a">On-Campus<br>
-			<input type="checkbox" value="b">Off-Campus<br>
-			<input type="checkbox" value="c">Mixed<br>
-	</div>
-</p>
-
-<p>
-	<div class="form-group" id="semester">
-	 <label for="sel1">3. When do you want to start?:</label><br>
-			<input type="checkbox" value="a">Fall<br>
-			<input type="checkbox" value="b">Spring<br>
-			<input type="checkbox" value="c">Immediately<br>
-	</div>
-</p>
-
-<p>
-	<div class="form-group" id="audience">
-	 <label for="sel1">4. Who do you want to serve?</label><br>
-			<input type="checkbox" value="a">Children<br>
-			<input type="checkbox" value="b">Teens<br>
-			<input type="checkbox" value="c">Senior Citizens<br>
-			<input type="checkbox" value="d">Homeless<br>
-			<input type="checkbox" value="e">People with Special Needs<br>
-			<input type="checkbox" value="f">Animals<br>
-			<!-- <option value="a">Children</option>
-			<option value="b">Teens</option>
-			<option value="c">Senior Citizens</option>
-			<option value="d">Homeless</option>
-			<option value="e">People with Special Needs</option>
-			<option value="f">Animals</option>
-			<option value="g">Any of the above</option> -->
-	</div>
-</p>
-
-<p>
-	<div class="form-group" id="interest">
-	 <label for="sel1">5. What interest areas do you want to serve?</label><br>
-			<input type="checkbox" value="a">Health Issues<br>
-			<input type="checkbox" value="b">Youth Mentoring<br>
-			<input type="checkbox" value="c">Hunger and Homelessness<br>
-			<input type="checkbox" value="d">Literacy and Education<br>
-			<input type="checkbox" value="e">Special Needs<br>
-<!-- 			<option value="a">Health Issues</option>
-			<option value="b">Youth Mentoring</option>
-			<option value="c">Hunger and Homelessness</option>
-			<option value="d">Literacy and Education</option>
-			<option value="e">Special Needs</option>
-			<option value="f">Any of the above</option>
- -->
-	</div>
-</p>
-<!-- 
-		<div class="row">
-			<div class="form-group col-sm-6">
-				<label for="name" class="h4">Name</label>
-				<input type="text" class="form-control" id="name" placeholder="Enter name"required>
-			</div>
-
-			<div class="form-group col-sm-6">
-				<label for="email" class="h4">Email</label>
-				<input type="email" class="form-control" id="email" placeholder="Enter email" required>
-			</div>
+		<div class="text-center">
+			<img id="logo" src="logoA.png" />
+			<br class="medium-break" />
+			<h1 id="header">Leonard Carmichael Society Survey</h1>
+			<p>Answer the questions below to see which club best suits you!</p>
 		</div>
 
-		<div class="form-group">
-			<label for="message" class="h4 ">Message</label>
-			<textarea id="message" class="form-control" rows="5" placeholder="Enter your message" required></textarea>
+		<div id="main-content">
+
+			<form class="text-center" id="question-form">
+
+				<button class="question-nav-btn btn" id="backBtn">Back</button>
+				<button class="question-nav-btn btn" id="nextBtn">Next</button>
+
+				<br />
+				<br />
+
+				<div id="small-wrapper">
+
+					<div class="container form-question">
+						<div class="center-block form-group" id="commitment">
+							<label for="sel1">1. Time Commitment:</label>
+							<br />
+							<input type="checkbox" value="a">  1-3 hours a week
+							<br />
+							<input type="checkbox" value="b">  3-7 hours a week
+							<br />
+							<input type="checkbox" value="c">  7-10 hours a week
+							<br />
+							<input type="checkbox" value="d">  10+ hours a week
+							<br />
+						</div>
+					</div>
+
+					<br class="small-break question-br" />
+
+					<div class="container form-question">
+						<div class="form-group" id="location">
+							<label for="sel1">2. Location:</label>
+							<br />
+							<input type="checkbox" value="a">  On-Campus
+							<br />
+							<input type="checkbox" value="b">  Off-Campus
+							<br />
+							<input type="checkbox" value="c">  Mixed
+							<br />
+						</div>
+					</div>
+
+					<br class="small-break question-br" />
+
+					<div class="container form-question">
+						<div class="form-group" id="semester">
+							<label for="sel1">3. When do you want to start?:</label>
+							<br />
+							<input type="checkbox" value="a">  Fall
+							<br />
+							<input type="checkbox" value="b">  Spring
+							<br />
+							<input type="checkbox" value="c">  Immediately
+							<br />
+						</div>
+					</div>
+
+					<br class="small-break question-br" />
+					<br class="medium-break question-br" />
+					<br class="medium-break question-br" />
+
+					<div class="container form-question">
+						<div class="form-group" id="audience">
+							<label for="sel1">4. Who do you want to serve?</label>
+							<br />
+							<input type="checkbox" value="a">  Children
+							<br />
+							<input type="checkbox" value="b">  Teens
+							<br />
+							<input type="checkbox" value="c">  Senior Citizens
+							<br />
+							<input type="checkbox" value="d">  Homeless
+							<br />
+							<input type="checkbox" value="e">  People with Special Needs
+							<br />
+							<input type="checkbox" value="f">  Animals
+							<br />
+						</div>
+					</div>
+
+					<br class="small-break question-br" />
+
+					<div class="container form-question">
+						<div class="form-group" id="interest">
+							<label for="sel1">5. What interest areas do you want to serve?</label>
+							<br />
+							<input type="checkbox" value="a">  Health Issues
+							<br />
+							<input type="checkbox" value="b">  Youth Mentoring
+							<br />
+							<input type="checkbox" value="c">  Hunger and Homelessness
+							<br />
+							<input type="checkbox" value="d">  Literacy and Education
+							<br />
+							<input type="checkbox" value="e">  Special Needs
+							<br />
+						</div>
+					</div>
+
+					<br />
+
+				</div>
+
+				<br />
+
+				<button type="submit" class="btn btn-success" id="request-button">Submit</button>
+
+			</form>
 		</div>
 
-		<button type="submit" id="form-submit" class="btn btn-success btn-lg pull-right ">Submit</button>
-	<div id="msgSubmit" class="h3 text-center hidden">Message Submitted!</div>
- -->
-<button type="submit" class="btn btn-success" id="request-button">Submit</button>
+		<div id="response-div"></div>
 
-</form>
-</div>
+		<br />
 
-<div class="text-center">
-	<p>Please email us any other questions that will help differentiate your group from others.</p> 
-</div>
+		<div class="text-center">
+			<p>Please email us any other questions that will help differentiate your group from others.</p> 
+		</div>
 
-<div id="response-div">
-</div>
-
-</body>
+	</body>
 </html>

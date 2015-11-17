@@ -17,6 +17,13 @@ select {
 	margin: auto;
 }
 
+.form-question {
+	display: inline-block;
+	width: auto;
+	text-align: left;
+	vertical-align: top;
+}
+
 #logo {
 	display: inline-block;
 	width: 10em;
@@ -26,4 +33,61 @@ select {
 
 #header {
 	display: inline-block;
+}
+
+.medium-break {
+	display: block;
+}
+
+.small-break {
+	display: block;
+}
+
+.inactive-question {
+	display: none;
+	margin: none;
+	padding: none;
+}
+
+.active-question {
+	display: inline-block;
+}
+
+/*#nextBtn {
+	display: none;
+}
+
+#backBtn {
+	display: none;
+}*/
+
+@media screen and (max-width: 899px) {
+	#small-wrapper {
+		text-align: left;
+		display: inline-block;
+	}
+
+	/*#question-form {
+		text-align: left;
+	}*/
+
+	.question-br {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 900px) {
+	.small-break {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 1350px) {
+	.small-break {
+		display: none;
+	}
+
+	.medium-break {
+		display: none;
+	}
 }
