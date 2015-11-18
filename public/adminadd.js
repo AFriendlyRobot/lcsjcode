@@ -1,6 +1,6 @@
 var questions = ["#name", "#commitment", "#location", "#semester", "#audience", "#interest", "#pass"]
 var qNames = ["commitment", "location", "semester", "audience", "interest"]
-var qText = ["name", "pass"]
+var qText = ["#name", "#pass"]
 var qDivs = [];
 
 var smallToggled = false;
@@ -82,7 +82,10 @@ function sendRequest(elem) {
 	elem.preventDefault();
 
 	// Parse parameters into query
-	var params = [];
+	// var params = [];
+
+	var params = {};
+
 	var localParam = "";
 
 	var selected = "";
@@ -92,25 +95,22 @@ function sendRequest(elem) {
 
 	for (var i = 0; i < qNames.length; i++) {
 		localParam = "";
-		localParam += qNames[i].toUpperCase() + "=";
 		$(questions[i] + ' input:checked').each(function(){localParam += $(this).val();});
-		params.push(localParam);
+
+		params[qNames[i].toLowerCase()] = localParam;
 	}
 
     for (var i = 0; i < qText.length; i++) {
-        
-        params.push()
+        // Remove '#'
+        params[qText[i].slice(1)] = $(qText[i]).val();
     }
-
-	var paramString = params.join("&");
-
-	console.log (paramString);
 
 	// Send query to our API
 	$.ajax({
 		type:"POST",
 		url:"http://localhost:3000/admin/add",
 		// url: "http://localhost:3000/groupquery?"+paramString,
+		data: params,
 		success:successCallback,
 		failure:failureCallback
 	});
@@ -133,15 +133,17 @@ function clickBack(elem) {
 }
 
 function successCallback(response) {
-	var fullHTML = '';
+	// var fullHTML = '';
 
-	for (var i = 0; i < response.length; i++) {
-		// console.log(response[i].name);
-		fullHTML += formatOrganization(response[i]);
-	}
+	// for (var i = 0; i < response.length; i++) {
+	// 	// console.log(response[i].name);
+	// 	fullHTML += formatOrganization(response[i]);
+	// }
 
-	$('#response-div').html(fullHTML);
-	// console.log(response);
+	// $('#response-div').html(fullHTML);
+	// // console.log(response);
+
+	$('#response-div').html(response);
 }
 
 function failureCallback(response) {
