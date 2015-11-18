@@ -22,7 +22,7 @@
 
 		<div id="main-content">
 
-			<form class="text-center" id="question-form">
+			<form class="text-center active-content" id="question-form">
 
 				<button class="question-nav-btn btn" id="backBtn">Back</button>
 				<button class="question-nav-btn btn" id="nextBtn">Next</button>
@@ -34,7 +34,7 @@
 
 					<div class="container form-question">
 						<div class="center-block form-group" id="commitment">
-							<label for="sel1">1. Time Commitment:</label>
+							<label for="sel1">Time Commitment:</label>
 							<br />
 							<input type="checkbox" value="a">  1-3 hours a week
 							<br />
@@ -51,7 +51,7 @@
 
 					<div class="container form-question">
 						<div class="form-group" id="location">
-							<label for="sel1">2. Location:</label>
+							<label for="sel1">Location:</label>
 							<br />
 							<input type="checkbox" value="a">  On-Campus
 							<br />
@@ -66,7 +66,7 @@
 
 					<div class="container form-question">
 						<div class="form-group" id="semester">
-							<label for="sel1">3. When do you want to start?:</label>
+							<label for="sel1">When do you want to start?:</label>
 							<br />
 							<input type="checkbox" value="a">  Fall
 							<br />
@@ -83,7 +83,7 @@
 
 					<div class="container form-question">
 						<div class="form-group" id="audience">
-							<label for="sel1">4. Who do you want to serve?</label>
+							<label for="sel1">Who do you want to serve?</label>
 							<br />
 							<input type="checkbox" value="a">  Children
 							<br />
@@ -104,7 +104,7 @@
 
 					<div class="container form-question">
 						<div class="form-group" id="interest">
-							<label for="sel1">5. What interest areas do you want to serve?</label>
+							<label for="sel1">What interest areas do you want to serve?</label>
 							<br />
 							<input type="checkbox" value="a">  Health Issues
 							<br />
@@ -128,9 +128,16 @@
 				<button type="submit" class="btn btn-success" id="request-button">Submit</button>
 
 			</form>
-		</div>
 
-		<div id="response-div"></div>
+			<div class="text-center inactive-content" id="response-div">
+				<button class="btn" id="return-btn">Back</button>
+				<div class="container">
+					Waiting for server
+				</div>
+			</div>
+
+		</div> <!-- main-content -->
+
 
 		<br />
 

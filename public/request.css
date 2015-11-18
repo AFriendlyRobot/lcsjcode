@@ -53,6 +53,14 @@ select {
 	display: inline-block;
 }
 
+.active-content {
+	display: block;
+}
+
+.inactive-content {
+	display: none;
+}
+
 /*#nextBtn {
 	display: none;
 }
