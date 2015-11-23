@@ -15,6 +15,7 @@ $(document).ready(function () {
 	$('#request-button').click(sendRequest);
 	$('#nextBtn').click(clickNext);
 	$('#backBtn').click(clickBack);
+	$('#return-btn').click(showForm);
 });
 
 function findQuestions() {
@@ -36,6 +37,8 @@ function sizeInit() {
 		$(".question-nav-btn").each(function (i, elem) {
 			$(elem).show();
 		});
+
+		limitButtons();
 
 		smallToggled = true;
 	} else if ($(window).width() >= smallCutoff) {
@@ -62,6 +65,8 @@ function sizeHandler() {
 		$(".question-nav-btn").each(function (i, elem) {
 			$(elem).show();
 		});
+
+		limitButtons();
 
 		smallToggled = true;
 	} else if ((smallToggled) && ($(window).width() >= smallCutoff)) {
@@ -108,10 +113,13 @@ function sendRequest(elem) {
 		success:successCallback,
 		failure:failureCallback
 	});
+
+	showResponse();
 }
 
 function clickNext(elem) {
 	elem.preventDefault();
+	console.log('next');
 
 	if (smallToggled) {
 		activateQuestion(questionIndex + 1);
@@ -120,6 +128,7 @@ function clickNext(elem) {
 
 function clickBack(elem) {
 	elem.preventDefault();
+	console.log('back');
 
 	if (smallToggled) {
 		activateQuestion(questionIndex - 1);
@@ -134,12 +143,23 @@ function successCallback(response) {
 		fullHTML += formatOrganization(response[i]);
 	}
 
-	$('#response-div').html(fullHTML);
+	$('#response-div div.container').html(fullHTML);
 	// console.log(response);
 }
 
 function failureCallback(response) {
 	console.log(response);
+}
+
+function showResponse() {
+	$("#question-form").removeClass("active-content").addClass("inactive-content");
+	$("#response-div").removeClass("inactive-content").addClass("active-content");
+}
+
+function showForm() {
+	$("#response-div").removeClass("active-content").addClass("inactive-content");
+	$("#question-form").removeClass("inactive-content").addClass("active-content");	
+	emptyResponse();
 }
 
 function formatOrganization(orgDoc) {
@@ -176,7 +196,28 @@ function activateQuestion(newInd) {
 
 	boundIndex();
 
+	limitButtons();
+
 	$(qDivs[oldInd]).removeClass("active-question").addClass("inactive-question");
 
 	$(qDivs[questionIndex]).removeClass("inactive-question").addClass("active-question");
+}
+
+function limitButtons() {
+	$('#backBtn').css('visibility', 'visible');
+	$('#nextBtn').css('visibility', 'visible');
+
+	if (questionIndex == 0) {
+		// Turn off back button
+		$('#backBtn').css('visibility', 'hidden');
+	}
+
+	if (questionIndex == qDivs.length - 1) {
+		// Turn off next button
+		$('#nextBtn').css('visibility', 'hidden');
+	}
+}
+
+function emptyResponse() {
+	$('#response-div div.container').html("Waiting for server");
 }
