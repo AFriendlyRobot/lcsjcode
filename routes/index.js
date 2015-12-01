@@ -27,12 +27,15 @@ router.get('/groupquery', function(req, res, next) {
 		cleanAnswers.push(util.sanitize(req.query[qList[i]]));
 	}
 
-	var maxMatch = 0;
 	var matchScores = [];
 	var matches = [];
 	var localScore = 0;
 	var localMatches = [];
 	var retDocs = [];
+	var pastScore = null;
+	var currentScore = null;
+	var currentIndex = 0;
+	var pastIndex = 0;
 
 	for (var i = 0; i < qList.length; i++) { localMatches.push(false); }
 
@@ -55,26 +58,33 @@ router.get('/groupquery', function(req, res, next) {
 				}
 			}
 
-			matchScores.push(localScore);
+			//store index of score in array
+			matchScores.push([localScore, i]);
 			matches.push(localMatches.slice(0));
-			if (localScore > maxMatch) { maxMatch = localScore; }
 		}
 
-		for (var i = 0; i < allDocs.length; i++) {
-			if (matchScores[i] == maxMatch) {
-				var newDoc = {};
-				var oldDoc = allDocs[i];
-				newDoc.name = oldDoc.name;
-				var mismatches = [];
-				for (var j=0; j < qList.length; j++) {
-					newDoc[qList[j].toLowerCase()] = oldDoc[qList[j].toLowerCase()];
-					if (matches[i][j] == false) {
-						mismatches.push(qList[j].toLowerCase());
-					}
-				}
-				newDoc.mismatches = mismatches.slice(0);
+		matchScores.sort(function(a, b) { return b[0] - a[0] });
+		while (currentIndex < matchScores.length && currentIndex < util.min_results) {
+			currentScore = matchScores[currentIndex][0];
+			while (currentIndex < matchScores.length && matchScores[currentIndex][0] == currentScore) { 
+				currentIndex++; 
+			}
+			if (currentIndex < util.max_results) {
+				pastScore = currentScore;
+				pastIndex = currentIndex;
+			}
+		}
 
-				retDocs.push(newDoc);
+		for (var i = 0; i < pastIndex; i++) {
+			pushDoc(allDocs[matchScores[i][1]], qList, retDocs, matches[matchScores[i][1]]);
+		}
+
+		if (currentIndex > util.max_results) {
+			var toSelect = util.min_results - pastIndex;
+			var selection = matchScores.slice(pastIndex, currentIndex);
+			util.shuffle(selection);
+			for (var i = 0; i < toSelect; i++) {
+				pushDoc(allDocs[selection[i][1]], qList, retDocs, matches[selection[i][1]]);
 			}
 		}
 
@@ -82,5 +92,20 @@ router.get('/groupquery', function(req, res, next) {
 		return res.status(200).json(retDocs);
 	});
 });
+
+function pushDoc(oldDoc, qList, retDocs, matches) {
+	var newDoc = {};
+	newDoc.name = oldDoc.name;
+	var mismatches = [];
+	for (var j=0; j < qList.length; j++) {
+		newDoc[qList[j]] = oldDoc[qList[j]];
+		if (matches[j] == false) {
+			mismatches.push(qList[j].toLowerCase());
+		}
+	}
+	newDoc.mismatches = mismatches.slice(0);
+
+	retDocs.push(newDoc);
+}
 
 module.exports = router;
