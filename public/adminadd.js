@@ -1,4 +1,4 @@
-var questions = ["#name", "#commitment", "#location", "#semester", "#audience", "#interest", "#pass"]
+var questions = ["#commitment", "#location", "#semester", "#audience", "#interest"]
 var qNames = ["commitment", "location", "semester", "audience", "interest"]
 var qText = ["#name", "#pass"]
 var qDivs = [];
@@ -81,17 +81,9 @@ function sizeHandler() {
 function sendRequest(elem) {
 	elem.preventDefault();
 
-	// Parse parameters into query
-	// var params = [];
-
 	var params = {};
 
 	var localParam = "";
-
-	var selected = "";
-	$('#checkboxes input:checked').each(function() {
-		selected.push($(this).val());
-	});
 
 	for (var i = 0; i < qNames.length; i++) {
 		localParam = "";
