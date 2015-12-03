@@ -95,7 +95,13 @@ function sendRequest(elem) {
 
 	for (var i = 0; i < qNames.length; i++) {
 		localParam = "";
-		$(questions[i] + ' input:checked').each(function(){localParam += $(this).val();});
+		$(questions[i] + ' input:checked').each(function(){
+                        localParam += $(this).val();
+                        console.log("val[" + i + "] = " + $(this).val());
+                });
+
+                console.log("qName = " + qNames[i].toLowerCase());
+                console.log("localParam = " + localParam);
 
 		params[qNames[i].toLowerCase()] = localParam;
 	}
