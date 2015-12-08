@@ -185,7 +185,7 @@ function formatOrganization(orgDoc) {
 	var html = '';
 	html += '<div id="' + orgDoc.name + ', class="text-center">';
 	html += '<p class="text-center">'
-	html += "<b>" + orgDoc.name + "</b>";
+	html += "<b><a class=\"org-link\" href=\"" + orgDoc.link + "\">" + orgDoc.name + "</a></b>";
 	html += "<br />";
 
 	if (orgDoc.mismatches && orgDoc.mismatches.length > 0) {

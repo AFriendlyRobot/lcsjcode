@@ -96,6 +96,7 @@ router.get('/groupquery', function(req, res, next) {
 function pushDoc(oldDoc, qList, retDocs, matches) {
 	var newDoc = {};
 	newDoc.name = oldDoc.name;
+	newDoc.link = oldDoc.link;
 	var mismatches = [];
 	for (var j=0; j < qList.length; j++) {
 		newDoc[qList[j]] = oldDoc[qList[j].toLowerCase()];
