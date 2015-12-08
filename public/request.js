@@ -13,6 +13,7 @@ $(document).ready(function () {
 	sizeInit();
 	// $(window).resize(sizeHandler);
 	$('.opt-img').click(selectOpt);
+	$('.opt-text').click(selectTextOpt);
 	$('#request-button').click(sendRequest);
 	$('#nextBtn').click(clickNext);
 	$('#backBtn').click(clickBack);
@@ -89,6 +90,15 @@ function selectOpt() {
 
 	$(this).toggle();
 	$(this).siblings("img").toggle();
+}
+
+function selectTextOpt() {
+	var check = $(this).siblings(".opt-input");
+	check.prop("checked", !check.prop("checked"));
+
+	$(this).toggleClass('opt-selected-text');
+	$(this).toggleClass('opt-unselected-text');
+	$(this).find('.opt-text-text').toggleClass('selected-text');
 }
 
 function sendRequest(elem) {

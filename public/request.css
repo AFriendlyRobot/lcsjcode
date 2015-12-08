@@ -111,6 +111,55 @@ label {
 	display: none;
 }
 
+.opt-text {
+	height: 160px;
+	width: 160px;
+	margin: 0px;
+	text-align: center;
+	/*vertical-align: center;*/
+	background-size: cover;
+	display: inline-block;
+}
+
+.opt-selected-text {
+	background-image: url("assets/other/Selected.png");
+	height: 180px;
+	width: 180px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-top: 10px;
+}
+
+.opt-unselected-text {
+	background-image: url("assets/other/outline.png");
+	height: 160px;
+	width: 160px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.opt-text-wrapper {
+	display: inline-block;
+	height: 180px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.opt-text-text {
+	display: table-cell;
+	height: 180px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.selected-text {
+	padding-bottom: 25px;
+}
+
 .opt-input {
 	visibility: hidden;
 	display: none;
