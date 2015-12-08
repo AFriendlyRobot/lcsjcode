@@ -52,7 +52,7 @@ router.get('/groupquery', function(req, res, next) {
 			for (var x = 0; x < qList.length; x++) { localMatches[x] = false; }
 
 			for (var j = 0; j < qList.length; j++) {
-				if (util.stringOverlap(doc[qList[j].toLowerCase()].toUpperCase(), cleanAnswers[j].toUpperCase())) {
+				if (doc[qList[j]] && cleanAnswers[j] && util.stringOverlap(doc[qList[j].toLowerCase()].toLowerCase(), cleanAnswers[j].toLowerCase())) {
 					localScore++;
 					localMatches[j] = true;
 				}
