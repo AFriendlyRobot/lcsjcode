@@ -7,6 +7,11 @@ exports.sanitize = function (text) {
 	return String(text).replace(match, '');
 }
 
+exports.sanitizeLink = function (text) {
+	var match = /[<>;&\*\\/\^_~()]/gi;
+	return String(text).replace(match, '');
+}
+
 exports.hashPass = function (password) {
 	return sha512(password+process.env.HASHSALT);
 }
