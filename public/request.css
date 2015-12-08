@@ -199,11 +199,11 @@ label {
 
 @media screen and (max-width: 849px) {
 	.questions-wrapper {
-		width: 200px;
+		width: 190px;
 	}
 
 	#small-wrapper {
-		width: 375px;
+		width: 325px;
 		vertical-align: top;
 	}
 }
