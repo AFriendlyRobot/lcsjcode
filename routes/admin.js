@@ -20,7 +20,8 @@ router.post('/add/', util.authenticateBody, function(req, res, next) {
       location  :  util.sanitize(req.body.location), 
       semester  :  util.sanitize(req.body.semester),
       audience  :  util.sanitize(req.body.audience), 
-      interest  :  util.sanitize(req.body.interest)
+      interest  :  util.sanitize(req.body.interest),
+      link      :  util.sanitizeLink(req.body.url)
     };
     organizations.find({name: cleanOrg.name}, function(e, d) {
       if (e) { return res.status(500).send("Internal server error"); }
