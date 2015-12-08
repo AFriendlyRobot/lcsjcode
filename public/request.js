@@ -11,7 +11,8 @@ var questionIndex = 0;
 $(document).ready(function () {
 	findQuestions();
 	sizeInit();
-	$(window).resize(sizeHandler);
+	// $(window).resize(sizeHandler);
+	$('.opt-img').click(selectOpt);
 	$('#request-button').click(sendRequest);
 	$('#nextBtn').click(clickNext);
 	$('#backBtn').click(clickBack);
@@ -27,7 +28,7 @@ function findQuestions() {
 }
 
 function sizeInit() {
-	if ($(window).width() < smallCutoff) {
+	if (true || ($(window).width() < smallCutoff)) {
 		$(qDivs).each(function (i, elem) {
 			$(elem).addClass("inactive-question");
 		});
@@ -80,6 +81,14 @@ function sizeHandler() {
 
 		smallToggled = false;
 	}
+}
+
+function selectOpt() {
+	var check = $(this).siblings(".opt-input");
+	check.prop("checked", !check.prop("checked"));
+
+	$(this).toggle();
+	$(this).siblings("img").toggle();
 }
 
 function sendRequest(elem) {
