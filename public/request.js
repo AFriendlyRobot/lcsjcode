@@ -96,7 +96,7 @@ function sendRequest(elem) {
 
 	for (var i = 0; i < qNames.length; i++) {
 		localParam = "";
-		localParam += qNames[i].toUpperCase() + "=";
+		localParam += qNames[i].toLowerCase() + "=";
 		$(questions[i] + ' input:checked').each(function(){localParam += $(this).val();});
 		params.push(localParam);
 	}
@@ -108,8 +108,8 @@ function sendRequest(elem) {
 	// Send query to our API
 	$.ajax({
 		type:"GET",
-		url:"https://shielded-atoll-8269.herokuapp.com/groupquery?"+paramString,
-		// url: "http://localhost:3000/groupquery?"+paramString,
+		// url:"https://shielded-atoll-8269.herokuapp.com/groupquery?"+paramString,
+		url: "http://localhost:3000/groupquery?"+paramString,
 		success:successCallback,
 		failure:failureCallback
 	});
