@@ -52,7 +52,7 @@ router.get('/groupquery', function(req, res, next) {
 			for (var x = 0; x < qList.length; x++) { localMatches[x] = false; }
 
 			for (var j = 0; j < qList.length; j++) {
-				if (util.stringOverlap(doc[qList[j]].toUpperCase(), cleanAnswers[j].toUpperCase())) {
+				if (util.stringOverlap(doc[qList[j].toLowerCase()].toUpperCase(), cleanAnswers[j].toUpperCase())) {
 					localScore++;
 					localMatches[j] = true;
 				}
@@ -98,7 +98,7 @@ function pushDoc(oldDoc, qList, retDocs, matches) {
 	newDoc.name = oldDoc.name;
 	var mismatches = [];
 	for (var j=0; j < qList.length; j++) {
-		newDoc[qList[j]] = oldDoc[qList[j]];
+		newDoc[qList[j]] = oldDoc[qList[j].toLowerCase()];
 		if (matches[j] == false) {
 			mismatches.push(qList[j].toLowerCase());
 		}
