@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Delete an Organization</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="/admindelete.js"></script>
+</head>
+body
+h1 Please select which organization to delete.
+select#name(name="name")
+    - each name in organizations
+        option=name 
+
+<div class="container form-question">
+<div class="center-block form-group">
+<label for="pass">Password:</label>
+<br />
+<input type="password" name="pass" id="pass">
+<br />
+</div>
+</div>
+<button type="submit" class="btn btn-success" id="request-button">Submit</button>
+<div id="response-div">
+</div>
