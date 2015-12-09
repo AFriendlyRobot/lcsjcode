@@ -94,6 +94,7 @@ router.get('/groupquery', function(req, res, next) {
 });
 
 function pushDoc(oldDoc, qList, retDocs, matches) {
+	console.log(oldDoc);
 	var newDoc = {};
 	newDoc.name = oldDoc.name;
 	newDoc.link = oldDoc.link;
