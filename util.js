@@ -8,7 +8,7 @@ exports.sanitize = function (text) {
 }
 
 exports.sanitizeLink = function (text) {
-	var match = /[<>;&\*\\/\^_~()]/gi;
+	var match = /[<>;&\*\\^_~()]/gi;
 	return String(text).replace(match, '');
 }
 
