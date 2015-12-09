@@ -33,15 +33,23 @@ router.post('/add/', util.authenticateBody, function(req, res, next) {
   }
 });
 
+
 /* POST delete organization */
-router.post('/delete/', function(req, res, next) {
+router.post('/delete/', util.authenticateBody, function(req, res, next) {
   if (req.body.name == null) {
-    res.send('Cannot delete, missing name argument');
+      res.send('Cannot delete, missing name argument');
   } else {
-    
-    res.send('Deleted organization named "' + req.body.name + '"');
+    var organizations = req.db.get("organizations");
+    organizations.remove({
+        name : util.sanitize(req.body.name)
+    }, function (err, docs) {
+        if (err) {return res.status(500).send("Internal server error");}
+        res.send('Deleted organization named "' + req.body.name + '"');
+    });
   }
 });
+
+
 
 /* GET list of organizations */
 router.get('/list', function(req, res, next) {
@@ -54,5 +62,16 @@ router.get('/list', function(req, res, next) {
   });
 });
 
+/* delete page */
+router.get('/delete', function (req, res) {
+    req.db.get('organizations').find({}, function(err,docs) {
+        if (err) { return res.status(500).send("Internal server error"); }
+        var names =  [];
+        for (var i = 0; i < docs.length; i++) {
+            names.push(docs[i].name);
+        }
+        res.render('delete', organizations=names);
+    });
+});    
 
 module.exports = router;
