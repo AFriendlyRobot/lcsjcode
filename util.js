@@ -7,6 +7,11 @@ exports.sanitize = function (text) {
 	return String(text).replace(match, '');
 }
 
+exports.sanitizeLink = function (text) {
+	var match = /[<>;&\*\\/\^_~()]/gi;
+	return String(text).replace(match, '');
+}
+
 exports.hashPass = function (password) {
 	return sha512(password+process.env.HASHSALT);
 }
@@ -28,10 +33,13 @@ exports.checkKeys = function (body, fields) {
 
 exports.stringOverlap = function (left, right) {
 	if (!((left) && (right))) { return ''; }
+	if (left == undefined) { return ''; }
+	if (right == undefined) { return ''; }
+
 	var retString = '';
 
-	var l = left.toUpperCase();
-	var r = right.toUpperCase();
+	var l = left.toLowerCase();
+	var r = right.toLowerCase();
 
 	for (var i = 0; i < l.length; i++) {
 		if (r.indexOf(l[i]) != -1) {
@@ -109,7 +117,7 @@ exports.shuffle = function(array) {
 }
 
 // All caps, all singular, all one word, all nouns
-exports.questionList = ['COMMITMENT', 'LOCATION', 'SEMESTER', 'AUDIENCE', 'INTEREST'];
+exports.questionList = ['commitment', 'location', 'semester', 'audience', 'interest'];
 
 //number of results minimum/maximum for group query
 exports.min_results = 3;

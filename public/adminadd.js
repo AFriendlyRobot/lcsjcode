@@ -1,6 +1,6 @@
 var questions = ["#commitment", "#location", "#semester", "#audience", "#interest"]
 var qNames = ["commitment", "location", "semester", "audience", "interest"]
-var qText = ["#name", "#pass"]
+var qText = ["#name", "#pass", "#url"]
 var qDivs = [];
 
 var smallToggled = false;
@@ -100,8 +100,8 @@ function sendRequest(elem) {
 	// Send query to our API
 	$.ajax({
 		type:"POST",
-		url:"http://localhost:3000/admin/add",
-		// url: "http://localhost:3000/groupquery?"+paramString,
+		// url:"http://localhost:3000/admin/add",
+		url:"https://shielded-atoll-8269.herokuapp.com/admin/add",
 		data: params,
 		success:successCallback,
 		failure:failureCallback
