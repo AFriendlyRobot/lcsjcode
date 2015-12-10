@@ -19,7 +19,8 @@ function sendRequest(elem) {
 	// Send query to our API
 	$.ajax({
 		type:"POST",
-		url:"http://localhost:3000/admin/delete",
+		// url:"http://localhost:3000/admin/delete",
+		url: "/admin/delete",
 		// url: "http://localhost:3000/groupquery?"+paramString,
 		data: params,
 		success:successCallback,

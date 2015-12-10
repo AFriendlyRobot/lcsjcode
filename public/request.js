@@ -127,8 +127,9 @@ function sendRequest(elem) {
 	// Send query to our API
 	$.ajax({
 		type:"GET",
-		url:"https://shielded-atoll-8269.herokuapp.com/groupquery?"+paramString,
+		// url:"https://shielded-atoll-8269.herokuapp.com/groupquery?"+paramString,
 		// url: "http://localhost:3000/groupquery?"+paramString,
+		url: "/groupquery?"+paramString,
 		success:successCallback,
 		failure:failureCallback
 	});

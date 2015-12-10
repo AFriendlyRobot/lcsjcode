@@ -101,7 +101,8 @@ function sendRequest(elem) {
 	$.ajax({
 		type:"POST",
 		// url:"http://localhost:3000/admin/add",
-		url:"https://shielded-atoll-8269.herokuapp.com/admin/add",
+		// url:"https://shielded-atoll-8269.herokuapp.com/admin/add",
+		url: "/admin/add",
 		data: params,
 		success:successCallback,
 		failure:failureCallback
