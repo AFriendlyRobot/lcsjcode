@@ -2,6 +2,65 @@ html {
 	background-color: #65b6a9;
 }
 
+@font-face {
+	font-family: Carybe_copy;
+	src: url('Carybe_copy.otf');
+	src: url('Carybe_copy.otf') format('woff2'),
+		 url('Carybe_copy.otf') format('woff');
+}
+
+@font-face {
+	font-family: Roboto-Regular;
+	src: url('Roboto-Regular.ttf');
+	src: url('Roboto-Regular.ttf') format('woff2'),
+		 url('Roboto-Regular.ttf') format('woff');
+}
+
+@font-face {
+	font-family: Roboto-Condensed;
+	src: url('RobotoCondensed-Regular.ttf');
+	src: url('RobotoCondensed-Regular.ttf') format('woff2'),
+		 url('RobotoCondensed-Regular.ttf') format('woff');
+}
+
+@font-face {
+	font-family: Roboto-Black;
+	src: url('Roboto-Black.ttf');
+	src: url('Roboto-Black.ttf') format('woff2'),
+		 url('Roboto-Black.ttf') format('woff');
+}
+
+@font-face {
+	font-family: Roboto-Condensed-Light;
+	src: url('RobotoCondensed-Light.ttf');
+	src: url('RobotoCondensed-Light.ttf') format('woff2'),
+		 url('RobotoCondensed-Light.ttf') format('woff');
+}
+
+p {
+	font-size: x-large;
+	font-family: Carybe_copy;
+	color: #999999;
+}
+
+h1{
+	font-family: Roboto-Black;
+	font-size: 42;
+	color: #639b81;
+}
+
+h2 {
+	font-family: Roboto-Condensed;
+	font-size: 38;
+	color: #999999;
+}
+
+h3 {
+	font-family: Roboto-Condensed-Light;
+	font-size: 36;
+	color: #b1cdc0;
+}
+
 body {
 	margin-left: 2%;
 	margin-right: 2%;
@@ -52,6 +111,10 @@ label {
 	width: 10em;
 	margin-right: 2em;
 	margin-left: 2em;
+}
+
+#description {
+	display: inline-block;
 }
 
 #header {
