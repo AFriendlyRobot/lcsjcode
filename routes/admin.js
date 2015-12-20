@@ -4,7 +4,35 @@ var router = express.Router();
 
 /* GET admin page - list organizations */
 router.get('/', function(req, res, next) {
-  res.send('respond with an admin resource');
+  return res.send('respond with an admin resource');
+});
+
+router.post('/changepass/', util.authenticateBody, function(req, res, next) {
+  var errMessage = "";
+
+  errMessage = util.checkKeys(req.body, ["newPass", "newPassConf"]);
+
+  var newHash = util.hashPass(util.sanitize(String(req.body.newPass)));
+  var newHashConf = util.hashPass(util.sanitize(String(req.body.newPassConf)));
+
+  if (newHash != newHashConf) {
+    errMessage += "Passwords don't match;";
+  }
+
+  if (errMessage != "") {
+    return res.status(400).send(errMessage);
+  } else {
+    var phashes = req.db.get("phashes");
+    var oldHash = util.hashPass(util.sanitize(String(req.body.pass)));
+
+    phashes.insert({phash: newHash}, function (err, added) {
+      if (err) { return res.status(500).send("Internal server error"); }
+
+      phashes.remove({phash: oldHash}, function (e) {
+        return res.status(200).send("Password updated");
+      });
+    });
+  }
 });
 
 /* POST add organization */
