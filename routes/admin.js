@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET admin page - list organizations */
 router.get('/', function(req, res, next) {
-  return res.send('respond with an admin resource');
+  return res.ridirect('/admin/index.html');
 });
 
 router.post('/changepass/', util.authenticateBody, function(req, res, next) {
