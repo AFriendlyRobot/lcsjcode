@@ -18,6 +18,8 @@ $(document).ready(function () {
 	$('#nextBtn').click(clickNext);
 	$('#backBtn').click(clickBack);
 	$('#return-btn').click(showForm);
+	$('#botBackBtn').click(clickBack);
+	$('#botNextBtn').click(clickNext);
 });
 
 function findQuestions() {
@@ -43,6 +45,8 @@ function sizeInit() {
 		limitButtons();
 
 		smallToggled = true;
+
+		setIndexString();
 	} else if ($(window).width() >= smallCutoff) {
 		$(qDivs).each(function (i, elem) {
 			$(elem).removeClass("inactive-question").removeClass("active-question");
@@ -221,20 +225,35 @@ function activateQuestion(newInd) {
 	$(qDivs[oldInd]).removeClass("active-question").addClass("inactive-question");
 
 	$(qDivs[questionIndex]).removeClass("inactive-question").addClass("active-question");
+
+	setIndexString();
+}
+
+function setIndexString() {
+	var indexString = String(questionIndex+1) + " / " + String(qDivs.length);
+	$("#questionIndex").text(indexString);
 }
 
 function limitButtons() {
 	$('#backBtn').css('visibility', 'visible');
+	$('#botBackBtn').css('visibility', 'visible');
 	$('#nextBtn').css('visibility', 'visible');
+	$('#botNextBtn').css('visibility', 'visible');
 
 	if (questionIndex == 0) {
 		// Turn off back button
 		$('#backBtn').css('visibility', 'hidden');
+		$('#botBackBtn').css('visibility', 'hidden');
 	}
 
 	if (questionIndex == qDivs.length - 1) {
 		// Turn off next button
 		$('#nextBtn').css('visibility', 'hidden');
+		$('#botNextBtn').hide();
+		$('#request-button').show();
+	} else {
+		$('#botNextBtn').show();
+		$('#request-button').hide();
 	}
 }
 

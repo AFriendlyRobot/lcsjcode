@@ -38,26 +38,26 @@ html {
 }
 
 p {
-	font-size: x-large;
+	font-size: 20px;
 	font-family: Carybe_copy;
 	color: #999999;
 }
 
 h1{
 	font-family: Roboto-Black;
-	font-size: 42;
+	font-size: 35px;
 	color: #639b81;
 }
 
 h2 {
 	font-family: Roboto-Condensed;
-	font-size: 38;
+	font-size: 28px;
 	color: #999999;
 }
 
 h3 {
 	font-family: Roboto-Condensed-Light;
-	font-size: 36;
+	font-size: 24px;
 	color: #b1cdc0;
 }
 
@@ -83,7 +83,7 @@ label {
 .question-nav-btn {
 	height: 100%;
 	vertical-align: top;
-	padding-top: 80px;
+	padding-top: 115px;
 	display: inline;
 }
 
@@ -248,6 +248,15 @@ label {
 	display: inline-block;
 }
 
+#question-information {
+	text-align: center;
+}
+
+#questionIndex {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 /*
 @media screen and (max-width: 599px) {
 	.questions-wrapper {
@@ -260,14 +269,95 @@ label {
 }
 */
 
+
+/*
+	Mobile screen
+*/
 @media screen and (max-width: 849px) {
+	p {
+		font-size: 17px;
+	}
+
+	h1{
+		font-size: 20px;
+	}
+
+	h2 {
+		font-size: 20px;
+	}
+
+	h3 {
+		font-size: 18px;
+	}
+
 	.questions-wrapper {
-		width: 190px;
+		width: 235px;
 	}
 
 	#small-wrapper {
-		width: 325px;
+		width: 375px;
+	}
+
+	.opt-img {
+		height: 100px;
+		width: 100px;
+		margin: 0px;
+	}
+
+	.unselected-opt-img {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.selected-opt-img {
+		padding-top: 5px;
+		padding-bottom: 0px;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+
+	.opt-text {
+		height: 80px;
+		width: 80px;
+		margin: 0px;
+	}
+
+	.opt-selected-text {
+		height: 90px;
+		width: 100px;
+		margin-top: 10px;
+		margin-bottom: 0px;
+		margin-left: 0px;
+		margin-right: 0px;
+		padding-top: 0px;
+	}
+
+	.opt-unselected-text {
+		height: 80px;
+		width: 80px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	.opt-text-wrapper {
+		height: 90px;
+	}
+
+	.opt-text-text {
+		height: 90px;
+	}
+
+	.selected-text {
+		padding-bottom: 5px;
+	}
+
+	.question-nav-btn {
 		vertical-align: top;
+		padding-top: 110px;
 	}
 }
 
