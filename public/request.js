@@ -21,6 +21,7 @@ $(document).ready(function () {
 	$('#return-btn').click(showForm);
 	$('#botBackBtn').click(clickBack);
 	$('#botNextBtn').click(clickNext);
+	$(document).keydown(handleArrows);
 });
 
 function findQuestions() {
@@ -65,7 +66,6 @@ function sizeInit() {
 
 function sizeHandler() {
 	if ($(window).width() < smallestCutoff) {
-		console.log('smaller');
 		// $(qDivs).each(function (i, elem) {
 		// 	$(elem).addClass("inactive-question");
 		// });
@@ -92,7 +92,6 @@ function sizeHandler() {
 
 		limitButtons();
 	} else if ($(window).width() >= smallestCutoff) {
-		console.log('bigger');
 		// $(qDivs).each(function (i, elem) {
 		// 	$(elem).removeClass("inactive-question").removeClass("active-question");
 		// });
@@ -114,6 +113,18 @@ function sizeHandler() {
 		$('#botNextBtn').css('visibility', 'hidden');
 		
 		limitButtons();
+	}
+}
+
+function handleArrows (e) {
+	if ((e.keyCode || e.which) == 37) {
+		if (smallToggled) {
+			activateQuestion(questionIndex - 1);
+		}
+	} else if ((e.keyCode || e.which) == 39) {
+		if (smallToggled) {
+			activateQuestion(questionIndex + 1);
+		}
 	}
 }
 
@@ -172,7 +183,6 @@ function sendRequest(elem) {
 
 function clickNext(elem) {
 	elem.preventDefault();
-	console.log('next');
 
 	if (smallToggled) {
 		activateQuestion(questionIndex + 1);
@@ -181,7 +191,6 @@ function clickNext(elem) {
 
 function clickBack(elem) {
 	elem.preventDefault();
-	console.log('back');
 
 	if (smallToggled) {
 		activateQuestion(questionIndex - 1);
