@@ -140,6 +140,7 @@ function successCallback(response) {
 }
 
 function failureCallback(response) {
+	$('#response-div').html("ERROR:" + response);
 	console.log(response);
 }
 
