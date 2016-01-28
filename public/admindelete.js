@@ -16,6 +16,9 @@ function sendRequest(elem) {
     }
     console.log(params);
 
+    // Clear response div
+    $('#response-div').html("");
+
 	// Send query to our API
 	$.ajax({
 		type:"POST",
@@ -24,7 +27,8 @@ function sendRequest(elem) {
 		// url: "http://localhost:3000/groupquery?"+paramString,
 		data: params,
 		success:successCallback,
-		failure:failureCallback
+		failure:failureCallback,
+		error:failureCallback
 	});
 }
 
@@ -33,5 +37,5 @@ function successCallback(response) {
 }
 
 function failureCallback(response) {
-	console.log(response);
+	$('#response-div').html(response.responseText);
 }

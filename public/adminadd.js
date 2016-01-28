@@ -97,6 +97,9 @@ function sendRequest(elem) {
         params[qText[i].slice(1)] = $(qText[i]).val();
     }
 
+    // Clear the response div
+    $('#response-div').html("");
+
 	// Send query to our API
 	$.ajax({
 		type:"POST",
@@ -105,7 +108,8 @@ function sendRequest(elem) {
 		url: "/admin/add",
 		data: params,
 		success:successCallback,
-		failure:failureCallback
+		failure:failureCallback,
+		error:failureCallback
 	});
 }
 
@@ -140,8 +144,9 @@ function successCallback(response) {
 }
 
 function failureCallback(response) {
-	$('#response-div').html("ERROR:" + response);
+	$('#response-div').html("ERROR: " + response.responseText);
 	console.log(response);
+	// console.log(response);
 }
 
 function formatOrganization(orgDoc) {
