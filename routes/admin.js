@@ -28,9 +28,11 @@ router.post('/changepass/', util.authenticateBody, function(req, res, next) {
     phashes.insert({phash: newHash}, function (err, added) {
       if (err) { return res.status(500).send("Internal server error"); }
 
-      phashes.remove({phash: oldHash}, function (e) {
-        return res.status(200).send("Password updated");
-      });
+      if (oldHash != newHash) {
+        phashes.remove({phash: oldHash}, function (e) {
+          return res.status(200).send("Password updated");
+        });
+      }
     });
   }
 });
