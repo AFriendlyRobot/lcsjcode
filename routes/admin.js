@@ -25,16 +25,16 @@ router.post('/changepass/', util.authenticateBody, function(req, res, next) {
     var phashes = req.db.get("phashes");
     var oldHash = util.hashPass(util.sanitize(String(req.body.pass)));
 
+    if (oldHash == newHash) {
+      return res.status(200).send("Password updated.");
+    }
+
     phashes.insert({phash: newHash}, function (err, added) {
       if (err) { return res.status(500).send("Internal server error"); }
 
-      if (oldHash != newHash) {
-        phashes.remove({phash: oldHash}, function (e) {
-          return res.status(200).send("Password updated");
-        });
-      } else {
+      phashes.remove({phash: oldHash}, function (e) {
         return res.status(200).send("Password updated");
-      }
+      });
     });
   }
 });
