@@ -32,6 +32,8 @@ router.post('/changepass/', util.authenticateBody, function(req, res, next) {
         phashes.remove({phash: oldHash}, function (e) {
           return res.status(200).send("Password updated");
         });
+      } else {
+        return res.status(200).send("Password updated");
       }
     });
   }
